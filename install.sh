@@ -3,7 +3,7 @@
 set -e
 
 # Function to parse the current Git branch
-export parse_git_branch() {
+parse_git_branch() {
     git branch 2>/dev/null | grep -E '^\*' | sed -E 's/^\* (.+)/(\1)/'
 }
 
@@ -16,6 +16,15 @@ if grep -i "LS_COLORS" ~/.bashrc; then
 else
     sudo sed -i '7i\
 export LS_COLORS="di=35;1:fi=33:ex=36;1"' ~/.bashrc
+fi
+
+# Adding parse_git_branch function
+if ! grep -q "parse_git_branch" ~/.bashrc; then
+    echo '' >> ~/.bashrc
+    echo '# Function to parse the current Git branch' >> ~/.bashrc
+    echo 'parse_git_branch() {' >> ~/.bashrc
+    echo '    git branch 2>/dev/null | grep -E "^\*" | sed -E "s/^\* (.+)/(\1)/"' >> ~/.bashrc
+    echo '}' >> ~/.bashrc
 fi
 
 # PS1
