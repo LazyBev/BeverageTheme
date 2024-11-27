@@ -29,10 +29,10 @@ fi
 
 # PS1
 if grep -i "PS1" ~/.bashrc; then
-    sudo sed -i '/PS1/c\export PS1="\[\033[0;30m\]@\h\n\[\033[01;34m\]'\['\[\033[01;35m\]\u\[\033[00m\] \[\033[01;37m\]<> \[\033[01;34m\]\w]\[\033[01;33m\]$(parse_git_branch)\[\033[00m\] "' ~/.bashrc
+    sudo sed -i '/PS1/c\export PS1='\[\033[01;34m\][\[\033[01;34m\]\[\[\033[01;35m\]\u\[\033[00m\] <> \[\033[01;34m\]\w\[\033[01;34m\]] \[\033[01;33m\]$(parse_git_branch)\[\033[00m\] '' ~/.bashrc
 else
     sudo sed -i '8i\
-export PS1="\[\033[0;30m\]@\h\n\[\033[01;34m\]'\['\[\033[01;35m\]\u\[\033[00m\] \[\033[01;37m\]<> \[\033[01;34m\]\w]\[\033[01;33m\]$(parse_git_branch)\[\033[00m\] "' ~/.bashrc
+export PS1='\[\033[01;34m\][\[\033[01;34m\]\[\[\033[01;35m\]\u\[\033[00m\] <> \[\033[01;34m\]\w\[\033[01;34m\]] \[\033[01;33m\]$(parse_git_branch)\[\033[00m\] '' ~/.bashrc
 fi
 
 # Set text color and background
