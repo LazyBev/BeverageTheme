@@ -3,7 +3,7 @@
 set -e
 
 # Define the file path for the customizations script
-CUSTOM_SCRIPT="beverage.sh"
+CUSTOM_SCRIPT="beverage"
 
 # Check if the customizations script exists
 if [ ! -f "$CUSTOM_SCRIPT" ]; then
