@@ -19,7 +19,7 @@ export LS_COLORS="di=35;1:fi=33:ex=36;1"' ~/.bashrc
 fi
 
 # PS1
-if grep -i "PS1" ~/.bashrc then
+if grep -i "PS1" ~/.bashrc; then
     sudo sed -i '/PS1/c\export PS1="\[\033[0;30m\]@\h\n\[\033[01;34m\]'\['\[\033[01;35m\]\u\[\033[00m\] \[\033[01;37m\]<> \[\033[01;34m\]\w]\[\033[01;33m\]$(parse_git_branch)\[\033[00m\] "' ~/.bashrc
 else
     sudo sed -i '8i\
@@ -27,7 +27,7 @@ export PS1="\[\033[0;30m\]@\h\n\[\033[01;34m\]'\['\[\033[01;35m\]\u\[\033[00m\] 
 fi
 
 # Set text color and background
-if [[ ! grep -i "\033]10" ~/.bashrc && ! grep -i "\033]11" ]] then
+if [[ ! grep -i "\033]10" ~/.bashrc && ! grep -i "\033]11" ]]; then
     echo 'echo -e "\033]10;#9F9F9F;#FFFFFF\033\\"' | sudo tee -a ~/.bashrc > /dev/null # Set text color (white) and background (dark grey)
     echo 'echo -e "\033]11;#000000\033\\"' | sudo tee -a ~/.bashrc > /dev/null # Set background color (black)
 else
