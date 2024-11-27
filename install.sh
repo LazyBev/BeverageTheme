@@ -44,6 +44,9 @@ else
     sed -i '/033]11/c\echo -e "\033]11;#000000\033\\"' ~/.bashrc
 fi
 
+# Ls command
+sed -i "/alias ls/c\alias ls='ls -al --color=auto'" ~/.bashrc
+
 # Finished :3
 echo "Bash aesthetic updated!"
 
