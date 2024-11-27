@@ -38,10 +38,11 @@ echo "Sourcing .bashrc..."
 source ~/.bashrc
 
 # Cleaning up...
-cd ~
 read -p "Would you like to delete the theme folder [y/n]: " yn
 if [[ $yn == "y" ]]; then
     rm -rf BeverageTheme
 else
     echo "Skipping clean up"
 fi
+
+cd ~
