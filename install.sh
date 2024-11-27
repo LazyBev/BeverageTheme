@@ -2,23 +2,29 @@
 
 set -e
 
-# Define the file path for the customizations script
-CUSTOM_SCRIPT="beverage"
-
-# Check if the customizations script exists
-if [ ! -f "$CUSTOM_SCRIPT" ]; then
-    echo "Error: $CUSTOM_SCRIPT not found. Please make sure the script is in the current directory."
-    exit 1
-fi
+# Function to parse the current Git branch
+parse_git_branch() {
+    git branch 2>/dev/null | grep -E '^\*' | sed -E 's/^\* (.+)/(\1)/'
+}
 
 # Append the contents of bash_customizations.sh to .bashrc
 echo "Adding customizations to ~/.bashrc..."
 
 # Adding theme
-sudo sed -i '/alias ls/d' ~/.bashrc
-sudo sed -i '/PS1/d' ~/.bashrc
-echo "" >> ~/.bashrc
-cat "$CUSTOM_SCRIPT" >> ~/.bashrc
+if grep -i "LS_COLOR" ~/.bashrc then
+    sudo sed '/LS_COLORS/c\export LS_COLORS='di=35;1:fi=33:ex=36;1'' ~/.bashrc
+else
+    sudo sed -i '7i\
+export LS_COLORS='di=35;1:fi=33:ex=36;1'' ~/.bashrc
+fi
+
+# PS1
+if grep -i "PS1" ~/.bashrc then
+    sudo sed -i '/PS1/c\export PS1='\[\033[0;30m\]@\h\n\[\033[01;34m\]\[\033[01;35m\]\u\[\033[00m\] \[\033[01;37m\]<> \[\033[01;34m\]\w\[\033[01;33m\]$(parse_git_branch)\[\033[00m\] '' ~/.bashrc
+fi
+
+echo -e "\033]10;#9F9F9F;#FFFFFF\033\\" >> ~/.bashrc # Set text color (white) and background (dark grey)
+echo -e "\033]11;#000000\033\\" >> ~/.bashrc # Set background color (black)
 
 # Finished :3
 echo "Bash aesthetic updated!"
