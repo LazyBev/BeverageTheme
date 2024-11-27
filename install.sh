@@ -27,7 +27,7 @@ export PS1="\[\033[0;30m\]@\h\n\[\033[01;34m\]'\['\[\033[01;35m\]\u\[\033[00m\] 
 fi
 
 # Set text color and background
-if [[ ! grep -i "\033]10" ~/.bashrc && ! grep -i "\033]11" ]]; then
+if [[ -z grep -i "\033]10" ~/.bashrc && -z grep -i "\033]11" ~/.bashrc ]]; then
     echo 'echo -e "\033]10;#9F9F9F;#FFFFFF\033\\"' | sudo tee -a ~/.bashrc > /dev/null # Set text color (white) and background (dark grey)
     echo 'echo -e "\033]11;#000000\033\\"' | sudo tee -a ~/.bashrc > /dev/null # Set background color (black)
 else
