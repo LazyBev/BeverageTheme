@@ -14,10 +14,14 @@ fi
 # Append the contents of bash_customizations.sh to .bashrc
 echo "Adding customizations to ~/.bashrc..."
 
+# Adding theme
+sed -i '/alias ls/d' .bashrc
+sed -i '/PS1/d' .bashrc
+cat "" >> ~/.bashrc
 cat "$CUSTOM_SCRIPT" >> ~/.bashrc
 
 # Notify user that the installation was successful
 echo "Customizations have been added to ~/.bashrc."
 
-# Optionally, prompt user to reload .bashrc
-echo "Please run 'source ~/.bashrc' to apply the changes."
+echo "Sourcing .bashrc..."
+source ~/.bashrc
