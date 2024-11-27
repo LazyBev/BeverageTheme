@@ -14,13 +14,16 @@ echo "Adding customizations to ~/.bashrc..."
 if grep -i "LS_COLORS" ~/.bashrc; then
     sudo sed -i '/LS_COLORS/c\export LS_COLORS="di=35;1:fi=33:ex=36;1"' ~/.bashrc
 else
-    sudo sed -i '7i\
+    sudo sed -i '6i\
 export LS_COLORS="di=35;1:fi=33:ex=36;1"' ~/.bashrc
 fi
 
 # PS1
 if grep -i "PS1" ~/.bashrc; then
     sudo sed -i '/PS1/c\export PS1="\[\033[0;30m\]@\h\n\[\033[01;34m\]\[\033[01;35m\]\u\[\033[00m\] \[\033[01;37m\]<> \[\033[01;34m\]\w\[\033[01;33m\]$(parse_git_branch)\[\033[00m\]"' ~/.bashrc
+else
+    sudo sed -i '6i\
+export PS1="\[\033[0;30m\]@\h\n\[\033[01;34m\]\[\033[01;35m\]\u\[\033[00m\] \[\033[01;37m\]<> \[\033[01;34m\]\w\[\033[01;33m\]$(parse_git_branch)\[\033[00m\]"' ~/.bashrc
 fi
 
 # Set text color and background
