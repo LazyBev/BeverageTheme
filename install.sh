@@ -45,7 +45,7 @@ else
 fi
 
 # Ls command
-sed -i "/alias ls/c\alias ls='ls -al --color=auto'" ~/.bashrc
+sudo sed -i "/alias ls/c\alias ls='ls -al --color=auto'" ~/.bashrc
 
 # Finished :3
 echo "Bash aesthetic updated!"
