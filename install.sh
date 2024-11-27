@@ -3,7 +3,7 @@
 set -e
 
 # Function to parse the current Git branch
-parse_git_branch() {
+export parse_git_branch() {
     git branch 2>/dev/null | grep -E '^\*' | sed -E 's/^\* (.+)/(\1)/'
 }
 
