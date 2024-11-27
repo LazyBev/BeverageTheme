@@ -14,7 +14,7 @@ echo "Adding customizations to ~/.bashrc..."
 if grep -i "LS_COLORS" ~/.bashrc; then
     sudo sed -i '/LS_COLORS/c\export LS_COLORS="di=35;1:fi=33:ex=36;1"' ~/.bashrc
 else
-    sudo sed -i '6i\
+    sudo sed -i '7i\
 export LS_COLORS="di=35;1:fi=33:ex=36;1"' ~/.bashrc
 fi
 
