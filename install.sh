@@ -14,8 +14,7 @@ echo "Adding customizations to ~/.bashrc..."
 if grep -i "LS_COLORS" ~/.bashrc; then
     sudo sed -i '/LS_COLORS/c\export LS_COLORS="di=35;1:fi=33:ex=36;1"' ~/.bashrc
 else
-    sudo sed -i '7i\
-export LS_COLORS="di=35;1:fi=33:ex=36;1"' ~/.bashrc
+    echo 'export LS_COLORS="di=35;1:fi=33:ex=36;1"' >> ~/.bashrc
 fi
 
 # Adding parse_git_branch function
@@ -31,16 +30,19 @@ fi
 if grep -i "PS1" ~/.bashrc; then
     sudo sed -i '/PS1/c\export PS1='\[\033[01;34m\][\[\033[01;34m\]\[\[\033[01;35m\]\u\[\033[00m\] <> \[\033[01;34m\]\w\[\033[01;34m\]] \[\033[01;33m\]$(parse_git_branch)\[\033[00m\] '' ~/.bashrc
 else
-    sudo sed -i '8i\
-export PS1='\[\033[01;34m\][\[\033[01;34m\]\[\[\033[01;35m\]\u\[\033[00m\] <> \[\033[01;34m\]\w\[\033[01;34m\]] \[\033[01;33m\]$(parse_git_branch)\[\033[00m\] '' ~/.bashrc
+    echo 'export PS1='\[\033[01;34m\][\[\033[01;34m\]\[\[\033[01;35m\]\u\[\033[00m\] <> \[\033[01;34m\]\w\[\033[01;34m\]] \[\033[01;33m\]$(parse_git_branch)\[\033[00m\] '' >> ~/.bashrc
 fi
 
 # Set text color and background
-if ! grep -q "\033]10" ~/.bashrc && ! grep -q "\033]11" ~/.bashrc; then
+if ! grep -q "\033]10" ~/.bashrc; then
     echo 'echo -e "\033]10;#9F9F9F;#FFFFFF\033\\"' >> ~/.bashrc # Set text color (white) and background (dark grey)
-    echo 'echo -e "\033]11;#000000\033\\"' >> ~/.bashrc         # Set background color (black)
 else
     sed -i '/033]10/c\echo -e "\033]10;#9F9F9F;#FFFFFF\033\\"' ~/.bashrc
+fi
+
+if ! grep -q "\033]11" ~/.bashrc; then
+    echo 'echo -e "\033]11;#000000\033\\"' >> ~/.bashrc         # Set background color (black)
+else
     sed -i '/033]11/c\echo -e "\033]11;#000000\033\\"' ~/.bashrc
 fi
 
