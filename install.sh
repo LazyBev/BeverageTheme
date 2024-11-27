@@ -17,7 +17,7 @@ echo "Adding customizations to ~/.bashrc..."
 # Adding theme
 sudo sed -i '/alias ls/d' ~/.bashrc
 sudo sed -i '/PS1/d' ~/.bashrc
-cat "" >> ~/.bashrc
+echo "" >> ~/.bashrc
 cat "$CUSTOM_SCRIPT" >> ~/.bashrc
 
 # Finished :3
