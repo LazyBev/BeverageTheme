@@ -20,8 +20,9 @@ sed -i '/PS1/d' .bashrc
 cat "" >> ~/.bashrc
 cat "$CUSTOM_SCRIPT" >> ~/.bashrc
 
-# Notify user that the installation was successful
-echo "Customizations have been added to ~/.bashrc."
+# Finished :3
+echo "Bash aesthetic updated!"
 
+# Sourcing .bashrc
 echo "Sourcing .bashrc..."
 source ~/.bashrc
