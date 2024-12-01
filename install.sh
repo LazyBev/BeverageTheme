@@ -2,6 +2,13 @@
 
 set -e
 
+if grep -iq "eval \"\\$\\(starship init bash\\)\"" ~/.bashrc; then
+    echo "Found 'starship' initialization in ~/.bashrc. Commenting it out..."
+    sed -i '/eval "$(starship init bash)"/ s/^/#/' ~/.bashrc
+else
+    echo "No 'starship' initialization found in ~/.bashrc."
+fi
+
 # Function to parse the current Git branch
 parse_git_branch() {
     git branch 2>/dev/null | grep -E '^\*' | sed -E 's/^\* (.+)/(\1)/'
