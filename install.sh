@@ -37,13 +37,13 @@ fi
 if ! grep -q "\033]10" ~/.bashrc; then
     echo 'echo -e "\033]10;#9F9F9F;#FFFFFF\033\\"' >> ~/.bashrc # Set text color (white) and background (dark grey)
 else
-    sed -i '/033]10/c\echo -e "\033]10;#9F9F9F;#FFFFFF\033\\"' ~/.bashrc
+    sudo sed -i '/033]10/c\echo -e "\033]10;#9F9F9F;#FFFFFF\033\\"' ~/.bashrc
 fi
 
 if ! grep -q "\033]11" ~/.bashrc; then
     echo 'echo -e "\033]11;#000000\033\\"' >> ~/.bashrc         # Set background color (black)
 else
-    sed -i '/033]11/c\echo -e "\033]11;#000000\033\\"' ~/.bashrc
+    sudo sed -i '/033]11/c\echo -e "\033]11;#000000\033\\"' ~/.bashrc
 fi
 
 # Ls command
